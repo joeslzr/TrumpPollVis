@@ -1,0 +1,173 @@
+.title{
+    text-align:center;
+    margin-bottom: 0;
+    padding: 5%;
+}
+
+.main{
+    width: 100%;
+    min-height: 100%;
+}
+
+.repLegend {
+    position: relative;
+    font-size: 1.2em;
+    z-index: 1;
+    overflow: hidden;
+    padding-left: 20%;
+    margin-left: 5%;
+}
+
+.repLegend:before {
+    content: ' ';
+    background-color: red;
+    width: 48%;
+    height: 2px;
+    top: 51%;
+    position: absolute;
+    overflow: hidden;
+
+}
+.repLegend:before {
+    text-align: right;
+    margin-left: -50%;
+}
+
+.demLegend {
+    position: relative;
+    font-size: 1.2em;
+    z-index: 1;
+    overflow: hidden;
+    padding-left: 20%;
+    margin-left: 5%;
+}
+
+.demLegend:before {
+    content: ' ';
+    background-color: dodgerblue;
+    width: 48%;
+    height: 2px;
+    top: 51%;
+    position: absolute;
+    overflow: hidden;
+
+}
+.demLegend:before {
+    text-align: right;
+    margin-left: -50%;
+}
+
+.indLegend {
+    position: relative;
+    font-size: 1.2em;
+    z-index: 1;
+    overflow: hidden;
+    padding-left: 20%;
+    margin-left: 5%;
+}
+
+.indLegend:before {
+    content: ' ';
+    background-color: mediumseagreen;
+    width: 48%;
+    height: 2px;
+    top: 51%;
+    position: absolute;
+    overflow: hidden;
+
+}
+.indLegend:before {
+    text-align: right;
+    margin-left: -50%;
+}
+
+
+
+.lineRep {
+    fill: none;
+    stroke: dodgerblue;
+    stroke-width: 2;
+}
+
+.lineDem {
+    fill: none;
+    stroke: indianred;
+    stroke-width: 2;
+}
+
+.lineInd{
+    fill: none;
+    stroke: mediumseagreen;
+    stroke-width: 2;
+
+}
+
+.rDot {
+    fill: whitesmoke;
+    stroke: black;
+}
+.dDot {
+    fill: whitesmoke;
+    stroke: black;
+}
+.iDot {
+    fill: whitesmoke;
+    stroke: black;
+}
+
+
+.dropdown {
+    position: relative;
+    margin: 0 auto;
+    width: 10%;
+}
+
+
+
+.dropbtn {
+    background-color: slategray;
+    color: white;
+    padding: 14px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    box-shadow: 0px 5px 8px 0px rgba(0,0,0,0.3);
+    background-color: whitesmoke;
+    width: 200%;
+    z-index: 9999;
+    margin-left: -50%;
+
+}
+
+.dropdown-content input{
+    color: black;
+    padding: 10px 0px;
+    text-align: center;
+    display: block;
+    width: 100%;
+
+
+}
+
+.dropdown-content input:hover {background-color: darkgrey}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: dimgrey;
+}
+
+#graph{
+    height: 80%;
+}
+
+
