@@ -75,7 +75,7 @@ function drawGraph(qCategory){
 
         // call x axis in group tag
         svg.append("g")
-            .attr("class", "x axis")
+            .attr("class", "x-axis")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(xScale));
 
@@ -106,7 +106,7 @@ function drawGraph(qCategory){
         svg.selectAll(".rDot")
             .data(dataset)
             .enter().append("circle")
-            .attr("class", "rDot")
+            .attr("class", "dot")
             .attr("cx", function(d) { return xScale(d.date) })
             .attr("cy", function(d) { return yScale(d.rYes) })
             .attr("r", 3)
@@ -114,7 +114,7 @@ function drawGraph(qCategory){
         svg.selectAll(".dDot")
             .data(dataset)
             .enter().append("circle")
-            .attr("class", "dDot")
+            .attr("class", "dot")
             .attr("cx", function(d) { return xScale(d.date) })
             .attr("cy", function(d) { return yScale(d.dYes) })
             .attr("r", 3)
@@ -122,7 +122,7 @@ function drawGraph(qCategory){
         svg.selectAll(".iDot")
             .data(dataset)
             .enter().append("circle")
-            .attr("class", "iDot")
+            .attr("class", "dot")
             .attr("cx", function(d) { return xScale(d.date) })
             .attr("cy", function(d) { return yScale(d.iYes) })
             .attr("r", 3)

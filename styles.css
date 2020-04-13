@@ -4,10 +4,29 @@
     padding: 5%;
 }
 
+body{
+    background-color: #121212;
+}
+
+p{
+    color: whitesmoke;
+}
+
+h1,h2,h3,h4{
+    color: whitesmoke;
+}
+
+
 .main{
     width: 100%;
     min-height: 100%;
+    background-color: rgba(18, 18, 18, 0.93);
 }
+
+
+
+/*TODO: Replace all this with d3/svg legend*/
+/**************************/
 
 .repLegend {
     position: relative;
@@ -68,7 +87,7 @@
 
 .indLegend:before {
     content: ' ';
-    background-color: mediumseagreen;
+    background-color: #fcfcfc;
     width: 48%;
     height: 2px;
     top: 51%;
@@ -80,7 +99,7 @@
     text-align: right;
     margin-left: -50%;
 }
-
+/**********************************/
 
 
 .lineRep {
@@ -97,23 +116,23 @@
 
 .lineInd{
     fill: none;
-    stroke: mediumseagreen;
+    stroke: #fcfcfc;
     stroke-width: 2;
 
 }
 
-.rDot {
+.dot {
     fill: whitesmoke;
     stroke: black;
 }
-.dDot {
-    fill: whitesmoke;
-    stroke: black;
-}
-.iDot {
-    fill: whitesmoke;
-    stroke: black;
-}
+/*.dDot {*/
+/*    fill: whitesmoke;*/
+/*    stroke: black;*/
+/*}*/
+/*.iDot {*/
+/*    fill: whitesmoke;*/
+/*    stroke: black;*/
+/*}*/
 
 
 .dropdown {
@@ -163,11 +182,22 @@
 }
 
 .dropdown:hover .dropbtn {
-    background-color: dimgrey;
+    background-color: #161616;
 }
 
 #graph{
     height: 80%;
+    width: 100%;
+    margin-bottom: 10%;
+    background-color: #1a1a1a;
+}
+
+.x-axis line, path, text{
+    stroke: whitesmoke;
+}
+
+.y-axis{
+
 }
 
 
