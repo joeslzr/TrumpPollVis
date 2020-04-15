@@ -10,7 +10,7 @@ function titleCase(string) {
 function drawGraph(qCategory, title){
 
     document.getElementById("graph").innerHTML="";
-	
+
 	document.getElementById("question").innerHTML= title;
 
     var margin = {top: 50, right: 50, bottom: 50, left: 50};
@@ -376,4 +376,130 @@ function isotypeBar(data) {
 	
 	// hide the right zero (so no overlap)
 	svg.select('.axis-right g.tick').style('display', 'none');
+}
+
+function updateLine(qCategory, title){
+
+	document.getElementById("question").innerHTML= title;
+	//Get Data again
+	d3.csv("impeachment-polls.csv", function(d){
+		var parseDate = d3.timeParse("%Y-%m-%d");
+		return {
+			rYes: +d["Rep Yes"],
+			dYes: +d["Dem Yes"],
+			iYes: +d["Ind Yes"],
+			rNo: +d["Rep No"],
+			dNo: +d["Dem No"],
+			iNo: +d["Ind No"],
+			date: parseDate(d.End),
+			category: d.Category
+		};
+
+	}).then(function(dataset) { // Do stuff in .then so we dont get promise error
+		// Filter for  question -> remove polls with 0 values
+		var i = dataset.length;
+		while (i--) {
+			if (dataset[i].category != qCategory
+				|| dataset[i].rYes == 0
+				|| dataset[i].dYes == 0
+				|| dataset[i].iYes == 0
+			) {
+				dataset.splice(i, 1);
+			}
+		}
+
+		console.log(dataset);
+
+		var minDate = new Date(2016,12,24),
+			maxDate = new Date(2020,2,2);
+
+		var width = 950;
+		var height = 450;
+
+
+
+		var xScale = d3.scaleTime()
+			.domain([minDate, maxDate])
+			.range([0, width]);
+
+
+		// Set Y
+		var yScale = d3.scaleLinear()
+			.domain([0, 100])
+			.range([height, 0]);
+
+
+		var line = d3.line()
+			.x(function(d) { return xScale(d.date); }) // set the x values for line
+			.y(function(d) { return yScale((d.rYes+d.dYes+d.iYes)/3); }) // set the y values for line
+			.curve(d3.curveLinear) // curve determines how points are interpolated
+
+
+
+
+		var t = d3.transition()
+			.duration(700);
+
+
+
+		// var svg = d3.select("#graph").append("svg")
+
+
+		// Update the path
+		d3.select(".line")
+			.transition(t)
+			.attr("d", line(dataset))
+
+		var us = d3.select("g").selectAll("circle")
+			.data(dataset)
+
+		us.exit().transition(t)
+			.attr("r", 0)
+			.remove();
+
+
+
+		console.log(us);
+
+		us.enter().append("circle")
+			.merge(us)
+			.transition().duration(700)
+			.attr("cx", function (d, i) { return xScale(d.date) })
+			.attr("cy", function (d) { return yScale((d.rYes + d.dYes + d.iYes) /3) })
+			.attr("class", function(d) { return "dot id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes)) })
+			.attr("r", 3)
+			.attr('fill', '#ffffff')
+			.attr('stroke', '#000')
+			.on('mouseover',function(d){
+				var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
+				var dots = document.getElementsByClassName(dotid);
+				for (var i = 0; i < dots.length; i++) {
+					dots[i].classList.toggle("dot-highlight");
+					dots[i].setAttribute("r", 15);
+				}
+			})
+			.on('mouseout', function(d){
+				var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
+				var dots = document.getElementsByClassName(dotid);
+				for (var i = 0; i < dots.length; i++) {
+					dots[i].classList.toggle("dot-highlight");
+					dots[i].setAttribute("r", 3);
+				}
+			})
+			.on('click', function(d){
+				var data = [
+					{question: "Rep", no: d.rNo, yes: d.rYes},
+					{question: "Ind", no: d.iNo, yes: d.iYes},
+					{question: "Dem", no: d.dNo, yes: d.dYes},
+				];
+				splitBar(data);
+			});
+
+		us.transition(t)
+			.attr("cy", function (d) { return yScale((d.rYes + d.dYes + d.iYes) / 3) })
+
+
+
+	});
+
 }
