@@ -27,7 +27,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/index.html" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -55,6 +55,7 @@
       <updated>1586808023726</updated>
       <workItem from="1586808024832" duration="5132000" />
       <workItem from="1586919938585" duration="930000" />
+      <workItem from="1586929135324" duration="16000" />
     </task>
     <servers />
   </component>
@@ -67,9 +68,10 @@
     </state>
     <state x="0" y="448" key="#com.intellij.execution.impl.EditConfigurationsDialog/3440.-108.1080.1890/0.0.3440.1410@0.0.3440.1410" timestamp="1586808388735" />
     <state x="3440" y="492" key="#com.intellij.execution.impl.EditConfigurationsDialog/3440.-108.1080.1890/0.0.3440.1410@3440.-108.1080.1890" timestamp="1586808363473" />
-    <state x="3760" y="592" key="FileChooserDialogImpl" timestamp="1586808333865">
-      <screen x="3440" y="-108" width="1080" height="1890" />
+    <state x="1019" y="522" key="FileChooserDialogImpl" timestamp="1586929148616">
+      <screen x="0" y="0" width="3440" height="1410" />
     </state>
+    <state x="1019" y="522" key="FileChooserDialogImpl/3440.-108.1080.1890/0.0.3440.1410@0.0.3440.1410" timestamp="1586929148616" />
     <state x="3760" y="592" key="FileChooserDialogImpl/3440.-108.1080.1890/0.0.3440.1410@3440.-108.1080.1890" timestamp="1586808333865" />
     <state x="3789" y="754" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586920490368">
       <screen x="3440" y="-108" width="1080" height="1890" />
