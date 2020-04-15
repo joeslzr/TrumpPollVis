@@ -9,40 +9,35 @@
 <head>
     <Title> CPSC 583 P3 </Title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./styles.css">
-    <script type="text/javascript" src="scripts.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="scripts.js" defer></script>
 </head>
 
 <body>
+	<h1 class="title">Trump Approval Rate</h1>
 
-    <div class="main">
-        <h1 class="title">Trump Approval Rate</h1>
+	<div>
+		<h2 class="repLegend">Republican</h2><br>
+		<h2 class="demLegend">Democrat</h2><br>
+		<h2 class="indLegend">Independent</h2>
+	</div>
 
-        <div class="dropdown">
-            <button class="dropbtn">Question Category</button>
-            <div class="dropdown-content">
-                <input type="button" value="Begin Inquiry" onclick="drawGraph('begin_inquiry')">
-                <input type="button" value="Begin Proceedings" onclick="drawGraph('being_proceedings')">
-                <input type="button" value="Consider Impeachment" onclick="drawGraph('consider')">
-                <input type="button" value="If Impeached, then Remove" onclick="drawGraph('if_impeach_then_remove')">
-                <input type="button" value="Impeach" onclick="drawGraph('impeach')">
-                <input type="button" value="Impeach and Remove" onclick="drawGraph('impeach_and_remove')">
-                <input type="button" value="Remove" onclick="drawGraph('remove')">
+	<div class="dropdown">
+		<button class="dropbtn">Question Category</button>
+		<div class="dropdown-content">
+			<input type="button" value="Begin Inquiry" onclick="drawGraph('begin_inquiry')">
+			<input type="button" value="Begin Proceedings" onclick="drawGraph('being_proceedings')">
+			<input type="button" value="Consider Impeachment" onclick="drawGraph('consider')">
+			<input type="button" value="If Impeached, then Remove" onclick="drawGraph('if_impeach_then_remove')">
+			<input type="button" value="Impeach" onclick="drawGraph('impeach_and_remove')">
+			<input type="button" value="Impeach and Remove" onclick="drawGraph('reasons')">
+			<input type="button" value="Remove" onclick="drawGraph('remove')">
+		</div>
+		<br>
+	</div>
 
-            </div>
-        </div>
-
-        <h2 class="repLegend">Republican</h2>
-        <h2 class="demLegend">Democrat</h2>
-        <h2 class="indLegend">Independent</h2>
-
-
-        <div id="graph">
-        </div>
-    </div>
-
-
-
+	<div id="isotype"></div>
+	<div id="graph"></div>
 </body>
 
 

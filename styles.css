@@ -1,13 +1,17 @@
 .title{
     text-align:center;
-    margin-bottom: 0;
-    padding: 5%;
+    margin-bottom: 15px;
 }
 
 body{
+	font-family: Verdana;
     background-color: #121212;
 }
 
+div {
+	text-align: center;
+    margin-bottom: 25px;
+}
 p{
     color: whitesmoke;
 }
@@ -15,15 +19,13 @@ p{
 h1,h2,h3,h4{
     color: whitesmoke;
 }
-
-
-.main{
-    width: 100%;
-    min-height: 100%;
-    background-color: rgba(18, 18, 18, 0.93);
+h2 {
+	width: 200px;
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+	text-align: left;
 }
-
-
 
 /*TODO: Replace all this with d3/svg legend*/
 /**************************/
@@ -101,43 +103,41 @@ h1,h2,h3,h4{
 }
 /**********************************/
 
+.lineRep, .isoRep { stroke: indianred;	fill: indianred; }
+.lineInd, .isoInd { stroke: #fcfcfc;	fill: #fcfcfc; }
+.lineDem, .isoDem { stroke: dodgerblue;	fill: dodgerblue; }
 
-.lineRep {
+.lineRep, .lineDem, .lineInd {
     fill: none;
-    stroke: dodgerblue;
     stroke-width: 2;
 }
 
-.lineDem {
-    fill: none;
-    stroke: indianred;
-    stroke-width: 2;
-}
+.isoNo { opacity:0.35; }
 
-.lineInd{
-    fill: none;
-    stroke: #fcfcfc;
-    stroke-width: 2;
-
+.isoText {
+	fill: black;
+	stroke: black;
+    stroke-width: 1;
 }
 
 .dot {
-    fill: whitesmoke;
-    stroke: black;
+	fill: whitesmoke;
+	stroke: black;
+	stroke-width: 1;
+	cursor: pointer;
 }
-/*.dDot {*/
-/*    fill: whitesmoke;*/
-/*    stroke: black;*/
-/*}*/
-/*.iDot {*/
-/*    fill: whitesmoke;*/
-/*    stroke: black;*/
-/*}*/
 
+.dot-highlight {
+	fill: whitesmoke;
+	stroke: gold;
+	stroke-width: 3;
+	cursor: pointer;
+}
 
 .dropdown {
     position: relative;
     margin: 0 auto;
+	margin-bottom: 25px;
     width: 10%;
 }
 
@@ -150,7 +150,6 @@ h1,h2,h3,h4{
     font-size: 14px;
     border: none;
     cursor: pointer;
-
 }
 
 
@@ -162,7 +161,6 @@ h1,h2,h3,h4{
     width: 200%;
     z-index: 9999;
     margin-left: -50%;
-
 }
 
 .dropdown-content input{
@@ -171,8 +169,7 @@ h1,h2,h3,h4{
     text-align: center;
     display: block;
     width: 100%;
-
-
+	cursor: pointer;
 }
 
 .dropdown-content input:hover {background-color: darkgrey}
@@ -185,10 +182,7 @@ h1,h2,h3,h4{
     background-color: #161616;
 }
 
-#graph{
-    height: 80%;
-    width: 100%;
-    margin-bottom: 10%;
+svg {
     background-color: #1a1a1a;
 }
 
