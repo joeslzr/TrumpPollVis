@@ -1,9 +1,11 @@
 
 
+//TODO: Draw graph on pageload (not sure why this doesnt work)
+document.getElementById("graph").onload = function() {drawGraph('impeach')};
 
 function drawGraph(qCategory){
 
-    document.getElementById("graph").innerHTML="";
+    document.getElementById("graph").innerHTML=""; //clear space TODO: update instead
 
     var margin = {top: 50, right: 50, bottom: 50, left: 50}
         , width = window.innerWidth - margin.left - margin.right
