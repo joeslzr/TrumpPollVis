@@ -109,7 +109,7 @@ function drawGraph(qCategory){
             .enter().append("circle")
             .attr("class", function(d) { return "dot id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes)) })
             .attr("cx", function(d) { return xScale(d.date) })
-            .attr("cy", function(d) { return yScale(d.rYes) })
+            .attr("cy", function(d) { return yScale((d.rYes+d.dYes+d.iYes)/3) })
             .attr("r", 3)
 			.on('mouseover',function(d){
 				var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
@@ -136,69 +136,69 @@ function drawGraph(qCategory){
 				splitBar(data);
 			});
 
-        svg.selectAll(".iDot")
-            .data(dataset)
-            .enter().append("circle")
-            .attr("class", function(d) { return "dot id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes)) })
-            .attr("cx", function(d) { return xScale(d.date) })
-            .attr("cy", function(d) { return yScale(d.iYes) })
-            .attr("r", 3)
-			.on('mouseover',function(d){
-				var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
-				var dots = document.getElementsByClassName(dotid);
-				for (var i = 0; i < dots.length; i++) {
-					dots[i].classList.toggle("dot-highlight");
-					dots[i].setAttribute("r", 15);
-				}
-			})
-			.on('mouseout', function(d){
-				var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
-				var dots = document.getElementsByClassName(dotid);
-				for (var i = 0; i < dots.length; i++) {
-					dots[i].classList.toggle("dot-highlight");
-					dots[i].setAttribute("r", 3);
-				}
-			})
-			.on('click', function(d){
-				var data = [
-					{question: "Rep", no: d.rNo, yes: d.rYes},
-					{question: "Ind", no: d.iNo, yes: d.iYes},
-					{question: "Dem", no: d.dNo, yes: d.dYes},
-				];
-				splitBar(data);
-			});
+        // svg.selectAll(".iDot")
+        //     .data(dataset)
+        //     .enter().append("circle")
+        //     .attr("class", function(d) { return "dot id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes)) })
+        //     .attr("cx", function(d) { return xScale(d.date) })
+        //     .attr("cy", function(d) { return yScale(d.iYes) })
+        //     .attr("r", 3)
+		// 	.on('mouseover',function(d){
+		// 		var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
+		// 		var dots = document.getElementsByClassName(dotid);
+		// 		for (var i = 0; i < dots.length; i++) {
+		// 			dots[i].classList.toggle("dot-highlight");
+		// 			dots[i].setAttribute("r", 15);
+		// 		}
+		// 	})
+		// 	.on('mouseout', function(d){
+		// 		var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
+		// 		var dots = document.getElementsByClassName(dotid);
+		// 		for (var i = 0; i < dots.length; i++) {
+		// 			dots[i].classList.toggle("dot-highlight");
+		// 			dots[i].setAttribute("r", 3);
+		// 		}
+		// 	})
+		// 	.on('click', function(d){
+		// 		var data = [
+		// 			{question: "Rep", no: d.rNo, yes: d.rYes},
+		// 			{question: "Ind", no: d.iNo, yes: d.iYes},
+		// 			{question: "Dem", no: d.dNo, yes: d.dYes},
+		// 		];
+		// 		splitBar(data);
+		// 	});
 
-        svg.selectAll(".dDot")
-            .data(dataset)
-            .enter().append("circle")
-            .attr("class", function(d) { return "dot id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes)) })
-            .attr("cx", function(d) { return xScale(d.date) })
-            .attr("cy", function(d) { return yScale(d.dYes) })
-            .attr("r", 3)
-			.on('mouseover',function(d){
-				var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
-				var dots = document.getElementsByClassName(dotid);
-				for (var i = 0; i < dots.length; i++) {
-					dots[i].classList.toggle("dot-highlight");
-					dots[i].setAttribute("r", 15);
-				}
-			})
-			.on('mouseout', function(d){
-				var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
-				var dots = document.getElementsByClassName(dotid);
-				for (var i = 0; i < dots.length; i++) {
-					dots[i].classList.toggle("dot-highlight");
-					dots[i].setAttribute("r", 3);
-				}
-			})
-			.on('click', function(d){
-				var data = [
-					{question: "Rep", no: d.rNo, yes: d.rYes},
-					{question: "Ind", no: d.iNo, yes: d.iYes},
-					{question: "Dem", no: d.dNo, yes: d.dYes},
-				];
-				splitBar(data);
-			});
+        // svg.selectAll(".dDot")
+        //     .data(dataset)
+        //     .enter().append("circle")
+        //     .attr("class", function(d) { return "dot id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes)) })
+        //     .attr("cx", function(d) { return xScale(d.date) })
+        //     .attr("cy", function(d) { return yScale(d.dYes) })
+        //     .attr("r", 3)
+		// 	.on('mouseover',function(d){
+		// 		var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
+		// 		var dots = document.getElementsByClassName(dotid);
+		// 		for (var i = 0; i < dots.length; i++) {
+		// 			dots[i].classList.toggle("dot-highlight");
+		// 			dots[i].setAttribute("r", 15);
+		// 		}
+		// 	})
+		// 	.on('mouseout', function(d){
+		// 		var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
+		// 		var dots = document.getElementsByClassName(dotid);
+		// 		for (var i = 0; i < dots.length; i++) {
+		// 			dots[i].classList.toggle("dot-highlight");
+		// 			dots[i].setAttribute("r", 3);
+		// 		}
+		// 	})
+		// 	.on('click', function(d){
+		// 		var data = [
+		// 			{question: "Rep", no: d.rNo, yes: d.rYes},
+		// 			{question: "Ind", no: d.iNo, yes: d.iYes},
+		// 			{question: "Dem", no: d.dNo, yes: d.dYes},
+		// 		];
+		// 		splitBar(data);
+		// 	});
     });
 
 }
