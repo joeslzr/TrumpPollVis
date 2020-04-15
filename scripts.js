@@ -26,18 +26,18 @@ function drawGraph(qCategory){
     // Draw Lines
     var lineRep = d3.line()
         .x(function(d) { return xScale(d.date); }) // set the x values for line
-        .y(function(d) { return yScale(d.rYes); }) // set the y values for line
+        .y(function(d) { return yScale((d.rYes+d.dYes+d.iYes)/3); }) // set the y values for line
         .curve(d3.curveLinear) // curve determines how points are interpolated
 
-    var lineDem = d3.line()
-        .x(function(d) { return xScale(d.date); })
-        .y(function(d) { return yScale(d.dYes); })
-        .curve(d3.curveLinear)
+    // var lineDem = d3.line()
+    //     .x(function(d) { return xScale(d.date); })
+    //     .y(function(d) { return yScale(d.dYes); })
+    //     .curve(d3.curveLinear)
 
-    var lineInd = d3.line()
-        .x(function(d) { return xScale(d.date); })
-        .y(function(d) { return yScale(d.iYes); })
-        .curve(d3.curveLinear)
+    // var lineInd = d3.line()
+    //     .x(function(d) { return xScale(d.date); })
+    //     .y(function(d) { return yScale(d.iYes); })
+    //     .curve(d3.curveLinear)
 
     // Load in data first
     d3.csv("impeachment-polls.csv", function(d){
@@ -89,19 +89,19 @@ function drawGraph(qCategory){
         // append path and bind to dataset -> draw line
         svg.append("path")
             .datum(dataset) // bind data
-            .attr("class", "lineRep") // give it a class
+            .attr("class", "line") // give it a class
             .attr("d", lineRep);    //call line draw
 
 
-        svg.append("path")
-            .datum(dataset)
-            .attr("class", "lineDem")
-            .attr("d", lineDem);
+        // svg.append("path")
+        //     .datum(dataset)
+        //     .attr("class", "lineDem")
+        //     .attr("d", lineDem);
 
-        svg.append("path")
-            .datum(dataset)
-            .attr("class", "lineInd")
-            .attr("d", lineInd);
+        // svg.append("path")
+        //     .datum(dataset)
+        //     .attr("class", "lineInd")
+        //     .attr("d", lineInd);
 
         // Put dots on data points
         svg.selectAll(".rDot")
