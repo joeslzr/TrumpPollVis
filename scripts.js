@@ -107,20 +107,20 @@ function drawGraph(qCategory){
         svg.selectAll(".rDot")
             .data(dataset)
             .enter().append("circle")
-            .attr("class", function(d) { return "dot id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes)) })
+            .attr("class", function(d, i) { return "dot id" + i })
             .attr("cx", function(d) { return xScale(d.date) })
             .attr("cy", function(d) { return yScale((d.rYes+d.dYes+d.iYes)/3) })
             .attr("r", 3)
-			.on('mouseover',function(d){
-				var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
+			.on('mouseover',function(d, i){
+				var dotid = "id" + i;
 				var dots = document.getElementsByClassName(dotid);
 				for (var i = 0; i < dots.length; i++) {
 					dots[i].classList.toggle("dot-highlight");
 					dots[i].setAttribute("r", 15);
 				}
 			})
-			.on('mouseout', function(d){
-				var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
+			.on('mouseout', function(d, i){
+				var dotid = "id" + i;
 				var dots = document.getElementsByClassName(dotid);
 				for (var i = 0; i < dots.length; i++) {
 					dots[i].classList.toggle("dot-highlight");
@@ -216,6 +216,7 @@ function splitBar(data) {
 	var indNo  = "#00AA00";
 
 	// normalize data
+	/*
 	for (var i = 0; i < data.length; i++) {
 		var obj = data[i];
 		var tot = obj.no + obj.yes;
@@ -223,6 +224,7 @@ function splitBar(data) {
 		obj.no  = (obj.no  / tot) * 100;
 		obj.yes = (obj.yes / tot) * 100;
 	}
+	*/
 	
 	var config = {
 		margin: {top: 40, right: 10, bottom: 10, left: 10},
