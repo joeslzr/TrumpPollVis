@@ -1,7 +1,17 @@
+function titleCase(string) {
+      var sentence = string.toLowerCase().split(" ");
+      for(var i = 0; i< sentence.length; i++){
+         sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
+      }
+   document.write(sentence.join(" "));
+   return sentence;
+}
 
-function drawGraph(qCategory){
+function drawGraph(qCategory, title){
 
     document.getElementById("graph").innerHTML="";
+	
+	document.getElementById("question").innerHTML= title;
 
     var margin = {top: 50, right: 50, bottom: 50, left: 50};
     var width = 950;
@@ -65,8 +75,6 @@ function drawGraph(qCategory){
                 dataset.splice(i,1);
             }
         }
-
-        console.log(dataset);
 
         var svg = d3.select("#graph").append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -133,7 +141,7 @@ function drawGraph(qCategory){
 					{question: "Ind", no: d.iNo, yes: d.iYes},
 					{question: "Dem", no: d.dNo, yes: d.dYes},
 				];
-				splitBar(data);
+				isotypeBar(data);
 			});
 
         // svg.selectAll(".iDot")
@@ -203,9 +211,9 @@ function drawGraph(qCategory){
 
 }
 
-function splitBar(data) {
-	var bind = "#isotype";
-	document.getElementById("isotype").innerHTML="";
+function isotypeBar(data) {
+	var bind = "isotype";
+	document.getElementById(bind).innerHTML="";
 	
 	// identify party colors
 	var repYes = "#FF5555";
@@ -227,7 +235,7 @@ function splitBar(data) {
 	*/
 	
 	var config = {
-		margin: {top: 40, right: 10, bottom: 10, left: 10},
+		margin: {top: 40, right: 50, bottom: 10, left: 50},
 		width: 950,
 		lineStroke: '#35342f',
 		lineStrokeWidth: 4,
@@ -239,7 +247,7 @@ function splitBar(data) {
 	
 	const {margin, width, leftKey, rightKey} = config;
 	const height = (data.length * 30) + margin.top + margin.bottom;
-	const w = width - margin.left - margin.right;
+	const w = width;
 	const h = height - margin.top - margin.bottom;
 
 	// calc max value for whole data set
@@ -263,17 +271,17 @@ function splitBar(data) {
 		
 	// scale for bars and right axis
 	const barWidth = d3.scaleLinear()
-		.domain([0, d3.max(maxValues)])
+		.domain([0, 100])
 		.range([0, w / 2]);
 		
 	// scale for left axis
 	const leftAxisScale = d3.scaleLinear()
-		.domain([0, d3.max(maxValues)])
+		.domain([0, 100])
 		.range([w / 2, 0]);
 
-	const svg = d3.select(bind).append('svg')
+	const svg = d3.select("#"+bind).append('svg')
 		.attr("width", width + margin.left + margin.right)
-		.attr("height", height + margin.top + margin.bottom)
+		.attr("height", height)
 		.append('g')
 		.attr('transform', d => `translate(${margin.left}, ${margin.top})`);
 
@@ -284,41 +292,62 @@ function splitBar(data) {
 		.attr('class', 'axis-left')
 		.attr('transform', d => `translate(${0}, ${-margin.top / 2})`);
 
-	const g = svg.selectAll('.bar')
+	const bars = svg.selectAll('.bar')
 		.data(data)
 		.enter().append('g')
 		.attr('class', 'bar')
 		.attr('transform', d => `translate(${w / 2}, ${bandScale(d[config.labelKey])})`);
 		
-	// append left bars
-	g.append('rect')
-		.attr('class', d => {
-			if (d.question.includes("Rep"))
-				return "isoRep isoNo";
-			else if (d.question.includes("Dem"))
-				return "isoDem isoNo";
-			else
-				return "isoInd isoNo";
-		})
-		.attr('x', 0)
-		.attr('width', 0)
-		.attr('height', bandScale.bandwidth())
-		.attr('x', d => -(barWidth(d[leftKey])))
-		.attr('width', d => barWidth(d[leftKey]));
+		var starGenerator = d3.symbol().type(d3.symbolStar).size(75);
+		var starData = starGenerator();
+	
+	// Draw STARS!
+	var starStart = 12;
+	var starPadding = 1;
+	
+	// append left stars
+	bars.each(function(d,i){
+		var curBar = d3.select(this);
+		var initialPos = -(barWidth(d[leftKey]));
 		
-	// append right bars
-	g.append('rect')
-		.attr('class', d => {
-			if (d.question.includes("Rep"))
-				return "isoRep";
-			else if (d.question.includes("Dem"))
-				return "isoDem";
-			else
-				return "isoInd";
-		})
-		.attr('width', 0)
-		.attr('height', bandScale.bandwidth())
-		.attr('width', d => barWidth(d[rightKey]));
+		for(var i = -starStart; i > initialPos; i = i - starPadding) {
+			curBar.append("path")
+				.attr('class', function(d,i){
+					if (d.question.includes("Rep"))
+						return "isoRep isoNo";
+					else if (d.question.includes("Dem"))
+						return "isoDem isoNo";
+					else
+						return "isoInd isoNo";
+				})
+				.attr('transform', function(d) {
+					return `translate(${i}, 10)`;
+				})
+				.attr('d', starData);
+		}
+	});
+	
+	// append right stars
+	bars.each(function(d,i){
+		var curBar = d3.select(this);
+		var initialPos = barWidth(d[rightKey])
+		
+		for(var i = starStart; i < initialPos; i = i + starPadding) {
+			curBar.append("path")
+				.attr('class', function(d,i){
+					if (d.question.includes("Rep"))
+						return "isoRep";
+					else if (d.question.includes("Dem"))
+						return "isoDem";
+					else
+						return "isoInd";
+				})
+				.attr('transform', function(d) {
+					return `translate(${i}, 10)`;
+				})
+				.attr('d', starData);
+		}
+	});
 		
 	// create a pivot line (around zero)
 	svg.append('line')
@@ -330,16 +359,11 @@ function splitBar(data) {
 		.style('stroke-width', config.lineStrokeWidth);
 		
 	// append a label
-	g.append('text')
-		.attr('x', -25)
-		.attr('y', 15)
+	svg.append('text')
+		.attr('x', w/2 - 31)
+		.attr('y', -25)
 		.attr('class', "isoText")
-		.text(d => {
-			if (d.question.includes("Ind"))
-				return "No Yes";
-			else
-				return "";
-		});
+		.text("No | Yes");
 		
 	// render an axis for each side
 	// can use the bar scale for the right

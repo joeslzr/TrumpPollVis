@@ -16,25 +16,25 @@
 <body>
 	<h1 class="title">Trump Approval Rate</h1>
 
-	<div>
+	<div><div id="legend">
 		<h2 class="repLegend">Republican</h2><br>
-		<h2 class="demLegend">Democrat</h2><br>
-		<h2 class="indLegend">Independent</h2>
-	</div>
+		<h2 class="indLegend">Independent</h2><br>
+		<h2 class="demLegend">Democrat</h2>
+	</div></div>
 
 	<div class="dropdown">
 		<button class="dropbtn">Question Category</button>
 		<div class="dropdown-content">
-			<input type="button" value="Begin Inquiry" onclick="drawGraph('begin_inquiry')">
-			<input type="button" value="Begin Proceedings" onclick="drawGraph('being_proceedings')">
-			<input type="button" value="Consider Impeachment" onclick="drawGraph('consider')">
-			<input type="button" value="If Impeached, then Remove" onclick="drawGraph('if_impeach_then_remove')">
-			<input type="button" value="Impeach" onclick="drawGraph('impeach_and_remove')">
-			<input type="button" value="Impeach and Remove" onclick="drawGraph('reasons')">
-			<input type="button" value="Remove" onclick="drawGraph('remove')">
+			<input type="button" value="Begin Inquiry" onclick="drawGraph('begin_inquiry', 'Begin Inquiry')">
+			<input type="button" value="Consider Impeachment" onclick="drawGraph('consider', 'Consider Impeachment')">
+			<input type="button" value="If Impeached, Then Remove" onclick="drawGraph('if_impeach_then_remove', 'If Impeached, Then Remove')">
+			<input type="button" value="Impeach" onclick="drawGraph('impeach_and_remove', 'Impeach')">
+			<input type="button" value="Impeach and Remove" onclick="drawGraph('reasons', 'Impeach and Remove')">
+			<input type="button" value="Remove" onclick="drawGraph('remove', 'Remove')">
 		</div>
 		<br>
 	</div>
+	<div><h2 id="question"></h2></div>
 
 	<div id="isotype"></div>
 	<div id="graph"></div>

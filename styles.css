@@ -20,16 +20,19 @@ h1,h2,h3,h4{
     color: whitesmoke;
 }
 h2 {
-	width: 200px;
 	display: inline-block;
 	margin: 0px;
 	padding: 0px;
-	text-align: left;
 }
 
 /*TODO: Replace all this with d3/svg legend*/
 /**************************/
-
+#legend {
+	width: 200px;
+	display: inline-block;
+	text-align: left;
+	margin: 0;
+}
 .repLegend {
     position: relative;
     font-size: 1.2em;
@@ -103,9 +106,9 @@ h2 {
 }
 /**********************************/
 
-.lineRep, .isoRep { stroke: indianred;	fill: indianred; }
-.lineInd, .isoInd { stroke: #fcfcfc;	fill: #fcfcfc; }
-.lineDem, .isoDem { stroke: dodgerblue;	fill: dodgerblue; }
+.lineRep, .isoRep { stroke: red;		fill: black; }
+.lineInd, .isoInd { stroke: #fcfcfc;	fill: black; }
+.lineDem, .isoDem { stroke: dodgerblue;	fill: black; }
 
 .line{stroke: green; fill:none;}
 
@@ -114,11 +117,11 @@ h2 {
     stroke-width: 2;
 }
 
-.isoNo { opacity:0.35; }
+.isoNo { opacity: 0.35; }
 
 .isoText {
-	fill: black;
-	stroke: black;
+	fill: whitesmoke;
+	stroke: whitesmoke;
     stroke-width: 1;
 }
 
