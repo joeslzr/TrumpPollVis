@@ -435,14 +435,9 @@ function updateLine(qCategory, title){
 			.curve(d3.curveLinear) // curve determines how points are interpolated
 
 
-
-
 		var t = d3.transition()
 			.duration(700);
 
-
-
-		// var svg = d3.select("#graph").append("svg")
 
 
 		// Update the path
@@ -464,22 +459,20 @@ function updateLine(qCategory, title){
 		us.enter().append("circle")
 			.merge(us)
 			.transition().duration(700)
-			.attr("cx", function (d, i) { return xScale(d.date) })
-			.attr("cy", function (d) { return yScale((d.rYes + d.dYes + d.iYes) /3) })
-			.attr("class", function(d) { return "dot id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes)) })
+			.attr("class", function(d, i) { return "dot id" + i })
+			.attr("cx", function(d) { return xScale(d.date) })
+			.attr("cy", function(d) { return yScale((d.rYes+d.dYes+d.iYes)/3) })
 			.attr("r", 3)
-			.attr('fill', '#ffffff')
-			.attr('stroke', '#000')
-			.on('mouseover',function(d){
-				var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
+			.on('mouseover',function(d, i){
+				var dotid = "id" + i;
 				var dots = document.getElementsByClassName(dotid);
 				for (var i = 0; i < dots.length; i++) {
 					dots[i].classList.toggle("dot-highlight");
 					dots[i].setAttribute("r", 15);
 				}
 			})
-			.on('mouseout', function(d){
-				var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
+			.on('mouseout', function(d, i){
+				var dotid = "id" + i;
 				var dots = document.getElementsByClassName(dotid);
 				for (var i = 0; i < dots.length; i++) {
 					dots[i].classList.toggle("dot-highlight");
@@ -492,9 +485,9 @@ function updateLine(qCategory, title){
 					{question: "Ind", no: d.iNo, yes: d.iYes},
 					{question: "Dem", no: d.dNo, yes: d.dYes},
 				];
-				splitBar(data);
+				isotypeBar(data);
 			});
-
+		
 		us.transition(t)
 			.attr("cy", function (d) { return yScale((d.rYes + d.dYes + d.iYes) / 3) })
 
