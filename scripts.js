@@ -39,16 +39,6 @@ function drawGraph(qCategory, title){
         .y(function(d) { return yScale((d.rYes+d.dYes+d.iYes)/3); }) // set the y values for line
         .curve(d3.curveLinear) // curve determines how points are interpolated
 
-    // var lineDem = d3.line()
-    //     .x(function(d) { return xScale(d.date); })
-    //     .y(function(d) { return yScale(d.dYes); })
-    //     .curve(d3.curveLinear)
-
-    // var lineInd = d3.line()
-    //     .x(function(d) { return xScale(d.date); })
-    //     .y(function(d) { return yScale(d.iYes); })
-    //     .curve(d3.curveLinear)
-
     // Load in data first
     d3.csv("impeachment-polls.csv", function(d){
         var parseDate = d3.timeParse("%Y-%m-%d");
@@ -100,17 +90,6 @@ function drawGraph(qCategory, title){
             .attr("class", "line") // give it a class
             .attr("d", lineRep);    //call line draw
 
-
-        // svg.append("path")
-        //     .datum(dataset)
-        //     .attr("class", "lineDem")
-        //     .attr("d", lineDem);
-
-        // svg.append("path")
-        //     .datum(dataset)
-        //     .attr("class", "lineInd")
-        //     .attr("d", lineInd);
-
         // Put dots on data points
         svg.selectAll(".rDot")
             .data(dataset)
@@ -143,70 +122,6 @@ function drawGraph(qCategory, title){
 				];
 				isotypeBar(data);
 			});
-
-        // svg.selectAll(".iDot")
-        //     .data(dataset)
-        //     .enter().append("circle")
-        //     .attr("class", function(d) { return "dot id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes)) })
-        //     .attr("cx", function(d) { return xScale(d.date) })
-        //     .attr("cy", function(d) { return yScale(d.iYes) })
-        //     .attr("r", 3)
-		// 	.on('mouseover',function(d){
-		// 		var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
-		// 		var dots = document.getElementsByClassName(dotid);
-		// 		for (var i = 0; i < dots.length; i++) {
-		// 			dots[i].classList.toggle("dot-highlight");
-		// 			dots[i].setAttribute("r", 15);
-		// 		}
-		// 	})
-		// 	.on('mouseout', function(d){
-		// 		var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
-		// 		var dots = document.getElementsByClassName(dotid);
-		// 		for (var i = 0; i < dots.length; i++) {
-		// 			dots[i].classList.toggle("dot-highlight");
-		// 			dots[i].setAttribute("r", 3);
-		// 		}
-		// 	})
-		// 	.on('click', function(d){
-		// 		var data = [
-		// 			{question: "Rep", no: d.rNo, yes: d.rYes},
-		// 			{question: "Ind", no: d.iNo, yes: d.iYes},
-		// 			{question: "Dem", no: d.dNo, yes: d.dYes},
-		// 		];
-		// 		splitBar(data);
-		// 	});
-
-        // svg.selectAll(".dDot")
-        //     .data(dataset)
-        //     .enter().append("circle")
-        //     .attr("class", function(d) { return "dot id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes)) })
-        //     .attr("cx", function(d) { return xScale(d.date) })
-        //     .attr("cy", function(d) { return yScale(d.dYes) })
-        //     .attr("r", 3)
-		// 	.on('mouseover',function(d){
-		// 		var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
-		// 		var dots = document.getElementsByClassName(dotid);
-		// 		for (var i = 0; i < dots.length; i++) {
-		// 			dots[i].classList.toggle("dot-highlight");
-		// 			dots[i].setAttribute("r", 15);
-		// 		}
-		// 	})
-		// 	.on('mouseout', function(d){
-		// 		var dotid = "id" + Math.floor(xScale(d.date)) + "x" + Math.floor(yScale(d.iYes));
-		// 		var dots = document.getElementsByClassName(dotid);
-		// 		for (var i = 0; i < dots.length; i++) {
-		// 			dots[i].classList.toggle("dot-highlight");
-		// 			dots[i].setAttribute("r", 3);
-		// 		}
-		// 	})
-		// 	.on('click', function(d){
-		// 		var data = [
-		// 			{question: "Rep", no: d.rNo, yes: d.rYes},
-		// 			{question: "Ind", no: d.iNo, yes: d.iYes},
-		// 			{question: "Dem", no: d.dNo, yes: d.dYes},
-		// 		];
-		// 		splitBar(data);
-		// 	});
     });
 
 }
@@ -222,17 +137,6 @@ function isotypeBar(data) {
 	var demNo  = "#0000AA";
 	var indYes = "#00FF00";
 	var indNo  = "#00AA00";
-
-	// normalize data
-	/*
-	for (var i = 0; i < data.length; i++) {
-		var obj = data[i];
-		var tot = obj.no + obj.yes;
-		if (tot === 0) tot = 1;
-		obj.no  = (obj.no  / tot) * 100;
-		obj.yes = (obj.yes / tot) * 100;
-	}
-	*/
 	
 	var config = {
 		margin: {top: 40, right: 50, bottom: 10, left: 50},
@@ -255,10 +159,6 @@ function isotypeBar(data) {
 		d3.max(data, d => d[leftKey]),
 		d3.max(data, d => d[rightKey])
 	];
-	// const minValues = [
-	//   d3.min(data, d => d[leftKey]),
-	//   d3.min(data, d => d[rightKey])
-	// ]
 
 	// access labels
 	const labels = data.map(d => d[config.labelKey]);
@@ -298,10 +198,39 @@ function isotypeBar(data) {
 		.attr('class', 'bar')
 		.attr('transform', d => `translate(${w / 2}, ${bandScale(d[config.labelKey])})`);
 		
-		var starGenerator = d3.symbol().type(d3.symbolStar).size(75);
-		var starData = starGenerator();
+	// create a pivot line (around zero)
+	svg.append('line')
+		.attr('x1', w / 2)
+		.attr('y1', 0)
+		.attr('x2', w / 2)
+		.attr('y2', h)
+		.style('stroke', config.lineStroke)
+		.style('stroke-width', config.lineStrokeWidth);
+		
+	// append a label
+	svg.append('text')
+		.attr('x', w/2 - 31)
+		.attr('y', -25)
+		.attr('class', "isoText")
+		.text("No | Yes");
+		
+	// render an axis for each side
+		// can use the bar scale for the right
+		const xAxisRight = d3.axisBottom().scale(barWidth).ticks(4);
+		// need the left to be reversed
+		const xAxisLeft = d3.axisBottom().scale(leftAxisScale).ticks(4);
+	axisRight.call(xAxisRight);
+	axisLeft.call(xAxisLeft);
+	
+	// hide the right zero (so no overlap)
+	svg.select('.axis-right g.tick').style('display', 'none');
+		
 	
 	// Draw STARS!
+	var starGenerator = d3.symbol().type(d3.symbolStar).size(75);
+	var tinyStarGenny = d3.symbol().type(d3.symbolStar).size(0);
+	var starData = starGenerator();
+	var tinyStar = tinyStarGenny();
 	var starStart = 12;
 	var starPadding = 1;
 	
@@ -323,6 +252,10 @@ function isotypeBar(data) {
 				.attr('transform', function(d) {
 					return `translate(${i}, 10)`;
 				})
+				.attr('d', tinyStar)
+				.transition()
+				.ease(d3.easeElastic)
+				.duration(1500)
 				.attr('d', starData);
 		}
 	});
@@ -345,35 +278,11 @@ function isotypeBar(data) {
 				.attr('transform', function(d) {
 					return `translate(${i}, 10)`;
 				})
+				.attr('d', tinyStar)
+				.transition()
+				.ease(d3.easeElastic)
+				.duration(1500)
 				.attr('d', starData);
 		}
 	});
-		
-	// create a pivot line (around zero)
-	svg.append('line')
-		.attr('x1', w / 2)
-		.attr('y1', 0)
-		.attr('x2', w / 2)
-		.attr('y2', h)
-		.style('stroke', config.lineStroke)
-		.style('stroke-width', config.lineStrokeWidth);
-		
-	// append a label
-	svg.append('text')
-		.attr('x', w/2 - 31)
-		.attr('y', -25)
-		.attr('class', "isoText")
-		.text("No | Yes");
-		
-	// render an axis for each side
-	// can use the bar scale for the right
-	const xAxisRight = d3.axisBottom().scale(barWidth).ticks(4);
-	
-	// need the left to be reversed
-	const xAxisLeft = d3.axisBottom().scale(leftAxisScale).ticks(4);
-	axisRight.call(xAxisRight);
-	axisLeft.call(xAxisLeft);
-	
-	// hide the right zero (so no overlap)
-	svg.select('.axis-right g.tick').style('display', 'none');
 }
